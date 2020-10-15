@@ -1,0 +1,24 @@
+.navbar{
+    
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    
+
+    .navbar-title{
+        font-size: 16pt;
+    }
+    .toggler{
+        cursor: pointer;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+
+       .moon-icon{
+          margin-right: 4px;
+       }
+    }
+}

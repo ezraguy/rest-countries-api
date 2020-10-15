@@ -1,0 +1,21 @@
+.App{
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.dark-mode{
+    background-color: black;
+    color: white;
+    
+}
+
+.dark-mode svg{
+    stroke: white;
+    fill: white;
+}
+
+html,body{
+    padding: 0px;
+    margin: 0px;
+}
+
