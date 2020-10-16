@@ -3,16 +3,7 @@
     
 }
 
-.dark-mode{
-    background-color: black;
-    color: white;
-    
-}
 
-.dark-mode svg{
-    stroke: white;
-    fill: white;
-}
 
 html,body{
     padding: 0px;

@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './App.css';
-import Navbar from './components/navbar';
+import Main from './components/main';
+import { ThemeProvider } from './theme-context';
 
 function App() {
+
   return (
-    <div className="App ">
-      <Navbar />
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        <Main />
+
+      </div>
+    </ThemeProvider>
   );
 }
 

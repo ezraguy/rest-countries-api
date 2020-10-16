@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import '../scss/navbar.scss';
+import { ThemeContext } from '../theme-context';
 import MoonIcon from '../utils/moon-icon';
 const Navbar = () => {
-    const [darkMode, SetDarkMode] = useState(false);
+    const [darkTheme, SetDarkTheme] = useContext(ThemeContext);
+
     const handleToggle = () => {
-        SetDarkMode(!darkMode);
+        SetDarkTheme(!darkTheme);
     }
     return (
         <div className="navbar container-fluid ">
@@ -13,6 +15,7 @@ const Navbar = () => {
                 <div className="toggler" onClick={handleToggle}>
                     <MoonIcon />
                     <span>Dark mode</span>
+
                 </div>
             </div>
         </div>

@@ -1,0 +1,13 @@
+.main{
+    transition: .3s ease;
+}
+
+.dark-mode{
+    background-color: rgb(26, 25, 25);
+    color: white;
+    svg{
+        stroke: white;
+        fill: white;
+    }
+}
+
