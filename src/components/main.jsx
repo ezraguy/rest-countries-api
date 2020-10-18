@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Navbar from './navbar';
 import '../scss/main.scss';
 import { ThemeContext } from '../theme-context';
+import Countries from './countries';
 
 const Main = () => {
     const [darkTheme] = useContext(ThemeContext);
@@ -10,6 +11,7 @@ const Main = () => {
         <div className={darkTheme ? "main dark-mode" : "main"}>
 
             <Navbar />
+            <Countries />
         </div>
     );
 }
