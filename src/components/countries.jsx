@@ -2,16 +2,26 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import '../scss/countries.scss';
 import SearchIcon from '../utils/search-icon';
+import _ from 'lodash';
 const Countries = () => {
     const [countries, setCountries] = useState([]);
+    const [countriesCopy, setCountriesCopy] = useState([]);
     const url = 'https://restcountries.eu/rest/v2/all';
     useEffect(() => {
         axios.get(url).then((data) => {
             let countriesTemp = data.data;
             setCountries(countriesTemp);
+            setCountriesCopy(countriesTemp);
+
         })
 
     }, [])
+    const handleInputChange = (e) => {
+        let inputValue = e.target.value;
+        let tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 });
+        setCountriesCopy(tempArr)
+
+    }
     return (
         <div className="countries ">
 
@@ -19,12 +29,11 @@ const Countries = () => {
                 <div className="countries-input">
 
                     <SearchIcon />
-                    <input type="text" placeholder="Search for a country" />
+                    <input type="text" placeholder="Search for a country" onChange={(e) => handleInputChange(e)} />
                 </div>
                 <div className="countries-filter">
                     <select name="region-select" id="region-select" defaultValue={'DEFAULT'}>
                         <option value="DEFAULT" disabled>Filter By Region</option>
-
                         <option value="africa">Africa</option>
                         <option value="america">America</option>
                         <option value="asia">Asia</option>
@@ -36,7 +45,7 @@ const Countries = () => {
             <div className="row ">
 
 
-                {countries.map((country) => {
+                {countriesCopy.map((country) => {
                     return (
                         <div className="col-lg-3 col-md-6 col-sm-12 mx-1 card-wrap" key={country.numericCode}>
                             <div className="card ">
