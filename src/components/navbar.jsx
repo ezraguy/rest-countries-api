@@ -10,13 +10,13 @@ const Navbar = () => {
     }
     return (
         <div className="navbar container-fluid ">
-            <div className="container">
-                <span className="navbar-title">Where in the world?</span>
-                <div className="toggler" onClick={handleToggle}>
-                    <MoonIcon />
-                    <span>Dark mode</span>
 
-                </div>
+            <span className="navbar-title">Where in the world?</span>
+            <div className="toggler" onClick={handleToggle}>
+                <MoonIcon />
+                <span>Dark mode</span>
+
+
             </div>
         </div>
     );

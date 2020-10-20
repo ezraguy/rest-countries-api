@@ -1,31 +1,43 @@
 .main{
     transition: .3s ease;
+    
 }
 
 .dark-mode{
-    background-color: #202C36 !important;
-    color: white !important;
+    
 
+    background-color: #202C36 !important;
+   
 
     .navbar{
         background-color: #24323e !important;
         div{
 
-            background-color: #24323e !important;
+            background-color: #24323e ;
         }
     }
     div{
-        background-color: #202C36 !important;
-        color: white !important;
+        background-color: #202C36 ;
+        color: white ;
     }
+   .countries-input,.countries-filter{
+    box-shadow: 3px 0px 29px -5px rgb(0, 0, 0) !important;
+    input,select{
+        background-color: #202C36 ;
+        color: white ;
+        &::placeholder{
+            color: white;
+        } 
+    }
+}
 
     .card{
-       
         box-shadow: 3px 0px 29px -5px rgb(0, 0, 0) !important;
+
     }
+
     svg{
         stroke: white;
-        fill: white;
     }
 }
 
