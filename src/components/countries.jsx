@@ -13,7 +13,7 @@ const Countries = () => {
     useEffect(() => {
         axios.get(url).then((data) => {
             let countriesTemp = data.data;
-            console.log(countriesTemp);
+
 
             for (let index = 0; index < countriesTemp.length; index++) {
                 const country = countriesTemp[index];
@@ -30,7 +30,7 @@ const Countries = () => {
         let inputValue = e.target.value;
         let tempArr = [];
         setInputValue(inputValue)
-        if (filterValue === '') {
+        if (filterValue === '' || filterValue === 'all') {
             tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 });
         }
         else {
@@ -53,7 +53,7 @@ const Countries = () => {
             tempArr = countries;
 
         setCountriesCopy(tempArr)
-
+        setInputValue('');
 
     }
     return (
