@@ -6,6 +6,9 @@ import _ from 'lodash';
 const Countries = () => {
     const [countries, setCountries] = useState([]);
     const [countriesCopy, setCountriesCopy] = useState([]);
+    const [inputValue, setInputValue] = useState("");
+    const [filterValue, setFilterValue] = useState("");
+
     const url = 'https://restcountries.eu/rest/v2/all';
     useEffect(() => {
         axios.get(url).then((data) => {
@@ -18,24 +21,46 @@ const Countries = () => {
     }, [])
     const handleInputChange = (e) => {
         let inputValue = e.target.value;
-        let tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 });
+        let tempArr = [];
+        setInputValue(inputValue)
+        if (filterValue === '') {
+            tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 });
+        }
+        else {
+            tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 && country.region.toLowerCase() === filterValue.toLowerCase() });
+        }
         setCountriesCopy(tempArr)
+
+    }
+
+    const handleFilterChange = (e) => {
+        let tempArr = [];
+        let filterValue = e.target.value;
+        setFilterValue(filterValue);
+        if (filterValue === '')
+            tempArr = _.filter(countries, function (country) { return country.region.toLowerCase() === filterValue.toLowerCase() });
+        else
+            tempArr = countries;
+
+
+
+        setCountriesCopy(tempArr)
+
 
     }
     return (
         <div className="countries ">
-
             <div className="countries-search ">
                 <div className="countries-input">
-
                     <SearchIcon />
-                    <input type="text" placeholder="Search for a country" onChange={(e) => handleInputChange(e)} />
+                    <input type="text" placeholder="Search for a country" onChange={(e) => handleInputChange(e)} value={inputValue} />
                 </div>
                 <div className="countries-filter">
-                    <select name="region-select" id="region-select" defaultValue={'DEFAULT'}>
+                    <select name="region-select" id="region-select" defaultValue={'DEFAULT'} onChange={(e) => handleFilterChange(e)}>
                         <option value="DEFAULT" disabled>Filter By Region</option>
+                        <option value="">All</option>
                         <option value="africa">Africa</option>
-                        <option value="america">America</option>
+                        <option value="americas">America</option>
                         <option value="asia">Asia</option>
                         <option value="europe">Europe</option>
                         <option value="oceania">Oceania</option>
@@ -45,7 +70,7 @@ const Countries = () => {
             <div className="row ">
 
 
-                {countriesCopy.map((country) => {
+                {countriesCopy.length > 0 && countriesCopy.map((country) => {
                     return (
                         <div className="col-lg-3 col-md-6 col-sm-12 mx-1 card-wrap" key={country.numericCode}>
                             <div className="card ">
@@ -64,6 +89,7 @@ const Countries = () => {
                         </div>
                     )
                 })}
+                {countriesCopy.length === 0 && <h1>Oops didn't find anything</h1>}
             </div>
         </div>
     );
