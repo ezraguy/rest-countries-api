@@ -14,6 +14,13 @@ const Countries = () => {
         axios.get(url).then((data) => {
             let countriesTemp = data.data;
             console.log(countriesTemp);
+
+            for (let index = 0; index < countriesTemp.length; index++) {
+                const country = countriesTemp[index];
+                let countryPopulation = country.population;
+                let value = countryPopulation.toLocaleString('en-US', { minimumFractionDigits: 0 });
+                country.population = value;
+            }
             setCountries(countriesTemp);
             setCountriesCopy(countriesTemp);
         })
