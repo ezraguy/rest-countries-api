@@ -53,23 +53,26 @@
         display: flex;
         margin: 0;
         margin-top: 30px;
-        justify-content: space-between;
-      
+        justify-content: space-evenly;
+        margin-bottom: 80px;
 
         .card-wrap{
             padding: 0;
             max-width: 250px;
-            
+           
+
         }
     }
     .card{
-
+        
         cursor: pointer;
         display: flex;
+        overflow: hidden;
         justify-content: center;
         box-shadow: 3px 0px 29px -5px rgba(0, 0, 0, 0.454);
         border-radius: 10px !important;
         margin-bottom: 20px;
+        height: 355px;
         margin-top: 50px;
         transition: .5s ease;
         &:hover{

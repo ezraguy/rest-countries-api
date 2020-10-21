@@ -13,9 +13,9 @@ const Countries = () => {
     useEffect(() => {
         axios.get(url).then((data) => {
             let countriesTemp = data.data;
+            console.log(countriesTemp);
             setCountries(countriesTemp);
             setCountriesCopy(countriesTemp);
-
         })
 
     }, [])
@@ -27,7 +27,10 @@ const Countries = () => {
             tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 });
         }
         else {
-            tempArr = _.filter(countries, function (country) { return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 && country.region.toLowerCase() === filterValue.toLowerCase() });
+            tempArr = _.filter(countries, function (country) {
+                return country.name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1 &&
+                    country.region.toLowerCase() === filterValue.toLowerCase()
+            });
         }
         setCountriesCopy(tempArr)
 
@@ -37,12 +40,10 @@ const Countries = () => {
         let tempArr = [];
         let filterValue = e.target.value;
         setFilterValue(filterValue);
-        if (filterValue === '')
+        if (filterValue !== 'all')
             tempArr = _.filter(countries, function (country) { return country.region.toLowerCase() === filterValue.toLowerCase() });
         else
             tempArr = countries;
-
-
 
         setCountriesCopy(tempArr)
 
@@ -58,7 +59,7 @@ const Countries = () => {
                 <div className="countries-filter">
                     <select name="region-select" id="region-select" defaultValue={'DEFAULT'} onChange={(e) => handleFilterChange(e)}>
                         <option value="DEFAULT" disabled>Filter By Region</option>
-                        <option value="">All</option>
+                        <option value="all">All</option>
                         <option value="africa">Africa</option>
                         <option value="americas">America</option>
                         <option value="asia">Asia</option>
@@ -72,7 +73,7 @@ const Countries = () => {
 
                 {countriesCopy.length > 0 && countriesCopy.map((country) => {
                     return (
-                        <div className="col-lg-3 col-md-6 col-sm-12 mx-1 card-wrap" key={country.numericCode}>
+                        <div className="col-lg-5 col-md-6 col-sm-12 mx-1 card-wrap" key={country.numericCode}>
                             <div className="card ">
                                 <img src={country.flag} className="card-img-top" alt="flag" />
                                 <div className="card-body">
