@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import '../scss/navbar.scss';
-import { ThemeContext } from '../theme-context';
+import { ThemeContext } from '../contexts/theme-context';
 import MoonIcon from '../utils/moon-icon';
 const Navbar = () => {
     const [darkTheme, SetDarkTheme] = useContext(ThemeContext);

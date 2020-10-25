@@ -1,20 +1,21 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import '../scss/countries.scss';
 import SearchIcon from '../utils/search-icon';
 import _ from 'lodash';
+import { CountryContext } from '../contexts/country-context';
+
 const Countries = () => {
     const [countries, setCountries] = useState([]);
     const [countriesCopy, setCountriesCopy] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [filterValue, setFilterValue] = useState("");
+    const [country, setCountry] = useContext(CountryContext);
 
     const url = 'https://restcountries.eu/rest/v2/all';
     useEffect(() => {
         axios.get(url).then((data) => {
             let countriesTemp = data.data;
-
-
             for (let index = 0; index < countriesTemp.length; index++) {
                 const country = countriesTemp[index];
                 let countryPopulation = country.population;
@@ -56,48 +57,55 @@ const Countries = () => {
         setInputValue('');
 
     }
+    const handleClick = (country) => {
+        setCountry(country)
+    }
     return (
-        <div className="countries ">
-            <div className="countries-search ">
-                <div className="countries-input">
-                    <SearchIcon />
-                    <input type="text" placeholder="Search for a country" onChange={(e) => handleInputChange(e)} value={inputValue} />
+        <div className="countries-wrap">
+
+
+            <div className="countries ">
+                <div className="countries-search ">
+                    <div className="countries-input">
+                        <SearchIcon />
+                        <input type="text" placeholder="Search for a country" onChange={(e) => handleInputChange(e)} value={inputValue} />
+                    </div>
+                    <div className="countries-filter">
+                        <select name="region-select" id="region-select" defaultValue={'DEFAULT'} onChange={(e) => handleFilterChange(e)}>
+                            <option value="DEFAULT" disabled>Filter By Region</option>
+                            <option value="all">All</option>
+                            <option value="africa">Africa</option>
+                            <option value="americas">America</option>
+                            <option value="asia">Asia</option>
+                            <option value="europe">Europe</option>
+                            <option value="oceania">Oceania</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="countries-filter">
-                    <select name="region-select" id="region-select" defaultValue={'DEFAULT'} onChange={(e) => handleFilterChange(e)}>
-                        <option value="DEFAULT" disabled>Filter By Region</option>
-                        <option value="all">All</option>
-                        <option value="africa">Africa</option>
-                        <option value="americas">America</option>
-                        <option value="asia">Asia</option>
-                        <option value="europe">Europe</option>
-                        <option value="oceania">Oceania</option>
-                    </select>
-                </div>
-            </div>
-            <div className="row ">
+                <div className="countries-main">
 
 
-                {countriesCopy.length > 0 && countriesCopy.map((country) => {
-                    return (
-                        <div className="col-lg-5 col-md-6 col-sm-12 mx-1 card-wrap" key={country.numericCode}>
-                            <div className="card ">
-                                <img src={country.flag} className="card-img-top" alt="flag" />
-                                <div className="card-body">
-                                    <h5 className="card-title country-name ">{country.name}</h5>
-                                    <p className="card-text country-population"><span >Population:</span>  {country.population} </p>
-                                    <p className="card-text">
-                                        <span>
-                                            Region:</span> {country.region} </p>
-                                    <p className="card-text "><span >
-                                        Capital:</span> {country.capital} </p>
+                    {countriesCopy.length > 0 && countriesCopy.map((country) => {
+                        return (
+                            <div className=" card-wrap" key={country.numericCode} onClick={() => handleClick(country)}>
+                                <div className="card ">
+                                    <img src={country.flag} className="card-img-top" alt="flag" />
+                                    <div className="card-body">
+                                        <h5 className="card-title country-name ">{country.name}</h5>
+                                        <p className="card-text country-population"><span >Population:</span>  {country.population} </p>
+                                        <p className="card-text">
+                                            <span>
+                                                Region:</span> {country.region} </p>
+                                        <p className="card-text "><span >
+                                            Capital:</span> {country.capital} </p>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })}
-                {countriesCopy.length === 0 && <h1>Oops didn't find anything</h1>}
+                        )
+                    })}
+                    {countriesCopy.length === 0 && <h1>Oops didn't find anything</h1>}
+                </div>
             </div>
         </div>
     );

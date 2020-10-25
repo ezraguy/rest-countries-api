@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Navbar from './navbar';
 import '../scss/main.scss';
-import { ThemeContext } from '../theme-context';
+import { ThemeContext } from '../contexts/theme-context';
 import Countries from './countries';
 
 const Main = () => {

@@ -1,16 +1,20 @@
 import React from 'react';
 import './App.css';
 import Main from './components/main';
-import { ThemeProvider } from './theme-context';
+import { ThemeProvider } from './contexts/theme-context';
+import { CountryProvider } from './contexts/country-context';
 
 function App() {
 
   return (
     <ThemeProvider>
-      <div className="App">
-        <Main />
+      <CountryProvider>
 
-      </div>
+        <div className="App">
+          <Main />
+
+        </div>
+      </CountryProvider>
     </ThemeProvider>
   );
 }
