@@ -14,7 +14,9 @@ const Navbar = () => {
             <span className="navbar-title">Where in the world?</span>
             <div className="toggler" onClick={handleToggle}>
                 <MoonIcon />
-                <span>Dark mode</span>
+                {!darkTheme && <span>Dark mode</span>}
+                {darkTheme && <span>Light mode</span>}
+
 
 
             </div>
