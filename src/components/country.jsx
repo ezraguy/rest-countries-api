@@ -1,22 +1,47 @@
 import React, { useContext, useState, useEffect } from 'react';
 import '../scss/country.scss';
 import { CountryContext } from '../contexts/country-context';
+import { CountriesContext } from '../contexts/all-countries-context';
 import { PopUpContext } from '../contexts/pop-up-context';
 import ArrowIcon from '../utils/arrow-icon';
 const Country = () => {
     const [country, setCountry] = useContext(CountryContext);
+    const [countries] = useContext(CountriesContext);
     const [showPopUp, setShowPopUp] = useContext(PopUpContext);
     const [languages, setLanguages] = useState([]);
     const [currencies, setCurrencies] = useState([]);
+    const [bordersCountries, setBordersCountries] = useState([]);
     const handleClose = () => {
         setShowPopUp(false);
     }
+    const handleBorderClick = (border) => {
+        setCountry(border)
+    }
+
     useEffect(() => {
 
         setLanguages(country.languages)
         setCurrencies(country.currencies)
-        window.focus();
+        getBorderCountries(country.borders);
+
+
     }, [country])
+
+    const getBorderCountries = (borderCodes) => {
+        let borderCountriesArr = [];
+        for (let index = 0; index < borderCodes.length; index++) {
+            const borderCode = borderCodes[index];
+            for (let index = 0; index < countries.length; index++) {
+                const item = countries[index];
+
+                if (item.alpha3Code === borderCode) {
+                    borderCountriesArr.push(item);
+                }
+            }
+        }
+        setBordersCountries(borderCountriesArr);
+
+    }
     return (
 
 
@@ -57,9 +82,9 @@ const Country = () => {
                                     {currencies.map((currency, index) => {
 
                                         if (index !== currencies.length - 1)
-                                            return <span className="currencies">{currency.name}, </span>
+                                            return <span className="currencies" key={currency.code}>{currency.name}, </span>
                                         else
-                                            return <span className="currencies">{currency.name} </span>
+                                            return <span className="currencies" key={currency.code}>{currency.name} </span>
 
 
 
@@ -71,16 +96,35 @@ const Country = () => {
 
                                     <span>Languages: </span>
                                     {languages.map((language, index) => {
+
                                         if (index !== languages.length - 1)
-                                            return <span className="languages">{language.name}, </span>
+                                            return <span className="languages" key={language.iso639_1}>{language.name}, </span>
                                         else
-                                            return <span className="languages">{language.name}</span>
+                                            return <span className="languages" key={language.iso639_1}>{language.name}</span>
 
                                     })}
                                 </p>
                             </div>
                         </div>
 
+                    </div>
+                    <div className="borders">
+
+                        <span>Borders:</span>
+
+                        {
+                            bordersCountries.map((border) => {
+
+                                return (
+                                    <div className="country-border-wrap" key={border.alpha3Code}>
+
+                                        <button className="border-button" onClick={() => handleBorderClick(border)}>{border.name}</button>
+                                    </div>
+
+                                )
+
+                            })
+                        }
                     </div>
                 </div>
 

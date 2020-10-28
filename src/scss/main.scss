@@ -43,15 +43,14 @@
     }
     .country-wrap{
         background-color: #202C36 !important;
-        button{
-            box-shadow: 3px 0px 29px -5px rgb(0, 0, 0) !important;
+       
+    }
+    button{
+        color: white;
+        background-color: transparent !important;
+        box-shadow: 3px 0px 29px -5px rgb(0, 0, 0) !important;
 
-            
-                svg{
-                    stroke: black;
-                }
-            
-        }
+ 
     }
 }
 

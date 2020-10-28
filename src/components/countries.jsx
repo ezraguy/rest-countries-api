@@ -5,10 +5,11 @@ import SearchIcon from '../utils/search-icon';
 import _ from 'lodash';
 import { CountryContext } from '../contexts/country-context';
 import { PopUpContext } from '../contexts/pop-up-context';
+import { CountriesContext } from '../contexts/all-countries-context';
 import Country from './country';
 
 const Countries = () => {
-    const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = useContext(CountriesContext);
     const [countriesCopy, setCountriesCopy] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [filterValue, setFilterValue] = useState("");
