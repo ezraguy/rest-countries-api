@@ -4,6 +4,8 @@ import '../scss/countries.scss';
 import SearchIcon from '../utils/search-icon';
 import _ from 'lodash';
 import { CountryContext } from '../contexts/country-context';
+import { PopUpContext } from '../contexts/pop-up-context';
+import Country from './country';
 
 const Countries = () => {
     const [countries, setCountries] = useState([]);
@@ -11,6 +13,7 @@ const Countries = () => {
     const [inputValue, setInputValue] = useState("");
     const [filterValue, setFilterValue] = useState("");
     const [country, setCountry] = useContext(CountryContext);
+    const [showPopUp, setShowPopUp] = useContext(PopUpContext);
 
     const url = 'https://restcountries.eu/rest/v2/all';
     useEffect(() => {
@@ -59,12 +62,11 @@ const Countries = () => {
     }
     const handleClick = (country) => {
         setCountry(country)
+        setShowPopUp(true);
     }
     return (
         <div className="countries-wrap">
-
-
-            <div className="countries ">
+            <div className={showPopUp ? 'countries noScroll' : 'countries '}>
                 <div className="countries-search ">
                     <div className="countries-input">
                         <SearchIcon />
@@ -82,7 +84,7 @@ const Countries = () => {
                         </select>
                     </div>
                 </div>
-                <div className="countries-main">
+                <div className="countries-main ">
 
 
                     {countriesCopy.length > 0 && countriesCopy.map((country) => {
@@ -107,6 +109,9 @@ const Countries = () => {
                     {countriesCopy.length === 0 && <h1>Oops didn't find anything</h1>}
                 </div>
             </div>
+            {
+                showPopUp && <Country />
+            }
         </div>
     );
 }

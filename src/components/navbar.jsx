@@ -11,7 +11,7 @@ const Navbar = () => {
     return (
         <div className="navbar container-fluid ">
 
-            <span className="navbar-title">Where in the world?</span>
+            <a className="navbar-title" href="">Where in the world?</a>
             <div className="toggler" onClick={handleToggle}>
                 <MoonIcon />
                 {!darkTheme && <span>Dark mode</span>}

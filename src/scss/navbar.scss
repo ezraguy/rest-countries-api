@@ -2,15 +2,20 @@
     
     display: flex;
     flex-direction: row;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    z-index:101;
+    top:0;
+    background-color: #fff;
+    padding: 20px 10% 20px 10%;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     
 
     .navbar-title{
         font-size: 16pt;
+        text-decoration: none;
+        color: black;
     }
     .toggler{
         cursor: pointer;

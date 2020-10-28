@@ -4,11 +4,15 @@
 }
 
 
+.noScroll{
+    height: 100%;
+    overflow: hidden;
+}
 
 html,body{
     padding: 0px;
     margin: 0px;
-   
+    
     
 }
 
