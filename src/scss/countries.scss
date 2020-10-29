@@ -1,9 +1,8 @@
 .countries-wrap{
       display: flex;
     justify-content: center;
-    
-.countries{
-  
+    .countries{
+    position: relative;     
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -113,8 +112,11 @@
     }
     .attribution{
         margin: 0;
+        bottom: 0;
+        position: absolute;
         text-align: center;
-      z-index: 1000;
+        width: 100%;
+        z-index: 10;
     }
 }
 

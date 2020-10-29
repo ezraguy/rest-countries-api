@@ -108,15 +108,17 @@ const Country = () => {
                         </div>
 
                     </div>
-                    <div className="borders">
+                    <div className="borders ">
+                        <p>
 
-                        <span>Borders:</span>
+                            <span>Borders:</span>
+                        </p>
 
                         {
                             bordersCountries.map((border) => {
 
                                 return (
-                                    <div className="country-border-wrap" key={border.alpha3Code}>
+                                    <div className="country-border-wrap " key={border.alpha3Code}>
 
                                         <button className="border-button" onClick={() => handleBorderClick(border)}>{border.name}</button>
                                     </div>

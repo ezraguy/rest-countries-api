@@ -58,8 +58,9 @@
         }
     }
     .country-info{
+        position: relative;
         padding-top: 40px;
-        width: 45%;
+        
         .country-name{
             font-weight: bold;
             font-size: 20pt;
@@ -67,7 +68,7 @@
         }
         .info{
             display: flex;
-            justify-content: space-between;
+         
          
             span{
                 font-weight: bold;
@@ -77,24 +78,28 @@
                 
             }
 
-            
+            .info-left{
+                margin-right: 20%;
+            }
         }
     }
 .borders{
+   align-items: center;
     display: flex;
-    align-items: center;
-    
+    flex-wrap: wrap;
     span{
         font-weight: bold;
-        margin-right: 10px;
+        margin-right: 20px;
+      
         
     }
 
         .country-border-wrap{
+            
             margin-right: 10px;
-           
-            .border-button{
-             display: inline-block;
+          .border-button{
+            margin-bottom: 20px;
+                
                min-height: 50px;
                text-align: center;
                 border: 0;
@@ -136,6 +141,16 @@
         align-items: center;
         .flag{
             margin: 0 !important;
+            padding: 0px 50px;
+        }
+        .country-info{
+            margin-right: auto;
+            .borders{
+                padding-left: 10px;
+                span{
+                    margin-right: 0px  !important;
+                }
+            }
         }
     }
 }
