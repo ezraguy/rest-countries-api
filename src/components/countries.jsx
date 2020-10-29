@@ -108,11 +108,17 @@ const Countries = () => {
                         )
                     })}
                     {countriesCopy.length === 0 && <h1>Oops didn't find anything</h1>}
+
                 </div>
+                <p class="attribution">
+                    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener noreferrer">Frontend Mentor</a>.
+      Coded by <a href="https://github.com/ezraguy">Guy Ezra</a>.
+    </p>
             </div>
             {
                 showPopUp && <Country />
             }
+
         </div>
     );
 }

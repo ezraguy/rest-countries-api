@@ -12,6 +12,7 @@ const Main = () => {
 
             <Navbar />
             <Countries />
+
         </div>
     );
 }
