@@ -48,7 +48,7 @@
         }
     }
     .flag{
-        width: 500px;
+        max-width: 500px;
         background-color: white;
         height: 400px;
         margin-right: 10%;
@@ -140,8 +140,12 @@
         
         align-items: center;
         .flag{
+           
             margin: 0 !important;
-            padding: 0px 50px;
+            padding: 0px 5px;
+            
+           
+            
         }
         .country-info{
             margin-right: auto;
